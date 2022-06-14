@@ -1,4 +1,4 @@
-FROM qmkfm/base_container:latest
+FROM qmkfm/qmk_cli:latest
 
 RUN cd / && \
     git clone https://github.com/qmk/qmk_firmware.git --single-branch --depth 1 && \
