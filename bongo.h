@@ -136,6 +136,7 @@ void eval_anim_state(void) {
 }
 
 static void render_bongo_cat(void) {
+
     eval_anim_state();
 
     oled_set_cursor(0, 0);

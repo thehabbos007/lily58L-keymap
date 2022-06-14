@@ -9,5 +9,4 @@ RUN cd / && \
 WORKDIR /qmk_firmware
 
 CMD make lily58/light:lily58l && \
-    ls && \
     cp lily58_light_lily58l.hex keyboards/lily58/keymaps/lily58l

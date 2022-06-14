@@ -225,11 +225,12 @@ void render_status_main(void) {
 }
 
 bool oled_task_user(void) {
-  if (is_keyboard_master()) {
-    render_status_main(); 
-  } else {
-    render_bongo_cat();
-  }
+    if (is_keyboard_master()) {
+        render_status_main(); 
+    } else {
+        render_bongo_cat();
+    }
+
     return false;
 }
 
