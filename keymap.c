@@ -1,7 +1,6 @@
  /* Copyright 2017 F_YUUCHI
   * Copyright 2020 Drashna Jaelre <@drashna>
   * Copyright 2020 Ben Roesner (keycapsss.com)
-  * Copyright 2021 Ahmad Sattar
   *
   * This program is free software: you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -99,7 +98,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,  _______, _______,  KC_INS ,  KC_PGDOWN,KC_PGUP, XXXXXXX, KC_PIPE, KC_BSLS,
                              _______, _______, _______,  _______, _______,  _______, _______, _______
 ),
-
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |   7  |   8  |   9  |      |      |
@@ -128,10 +126,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-//SSD1306 OLED update loop, make sure to enable OLED_DRIVER_ENABLE=yes in rules.mk
-#ifdef OLED_DRIVER_ENABLE
-#include "bongo.h"
+//SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
+#ifdef OLED_ENABLE
 
+#include "bongo.h"
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (is_keyboard_master()) {
@@ -140,6 +138,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
         return OLED_ROTATION_180;
     }
 }
+
 
 void render_layer_state(void) {
     static const char PROGMEM raise [] = {
@@ -225,11 +224,13 @@ void render_status_main(void) {
     render_layer_state();
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
   if (is_keyboard_master()) {
-    render_status_main();
+    render_status_main(); 
   } else {
     render_bongo_cat();
   }
+    return false;
 }
-#endif // OLED_DRIVER_ENABLE
+
+#endif // OLED_ENABLE

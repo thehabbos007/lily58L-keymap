@@ -26,9 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
-
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
-#define SPLIT_USB_DETECT
+// #define SPLIT_USB_DETECT
 #define NO_USB_STARTUP_CHECK

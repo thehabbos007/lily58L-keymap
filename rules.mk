@@ -1,3 +1,4 @@
 EXTRAKEY_ENABLE = yes
 WPM_ENABLE = yes
 EXTRAFLAGS += -flto
+BOOTLOADER = atmel-dfu
