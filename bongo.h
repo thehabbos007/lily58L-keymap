@@ -141,26 +141,31 @@ static void render_bongo_cat(void) {
 
     oled_set_cursor(0, 0);
 
-    switch (anim_state) {
-        case Idle:
-            oled_write_raw_P(idle[abs((IDLE_FRAMES - 1) - current_idle_frame)], ANIM_SIZE);
-            if (timer_elapsed32(anim_timer) > ANIM_FRAME_DURATION)
-            {
-                current_idle_frame = (current_idle_frame + 1) % IDLE_FRAMES;
-                anim_timer = timer_read32();
-            }
-            break;
+    if (anim_state == Idle && timer_elapsed32(idle_timeout_timer) > OLED_TIMEOUT) {
+        oled_off();
+    } else {
+        switch (anim_state) {
+            case Idle:
+                oled_write_raw_P(idle[abs((IDLE_FRAMES - 1) - current_idle_frame)], ANIM_SIZE);
+                if (timer_elapsed32(anim_timer) > ANIM_FRAME_DURATION)
+                {
+                    current_idle_frame = (current_idle_frame + 1) % IDLE_FRAMES;
+                    anim_timer = timer_read32();
+                }
+                break;
 
-        case Prep:
-            oled_write_raw_P(prep[0], ANIM_SIZE);
-            break;
+            case Prep:
+                oled_write_raw_P(prep[0], ANIM_SIZE);
+                break;
 
-        case Tap:
-            oled_write_raw_P(tap[abs((TAP_FRAMES - 1) - current_tap_frame)], ANIM_SIZE);
-            current_tap_frame = (current_tap_frame + 1) % TAP_FRAMES;
-            break;
+            case Tap:
+                oled_on();
+                oled_write_raw_P(tap[abs((TAP_FRAMES - 1) - current_tap_frame)], ANIM_SIZE);
+                current_tap_frame = (current_tap_frame + 1) % TAP_FRAMES;
+                break;
 
-        default:
-            break;
+            default:
+                break;
+        }
     }
 }
