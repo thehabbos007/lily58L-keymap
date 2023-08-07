@@ -1,4 +1,4 @@
-FROM qmkfm/qmk_cli:latest
+FROM qmkfm/qmk_cli:f86f63ed1d98102d3bc9f7d2a38924027804ffec32919415f65a0b6fb710dd6b
 
 RUN cd / && \
     git clone https://github.com/qmk/qmk_firmware.git --single-branch --depth 1 && \
