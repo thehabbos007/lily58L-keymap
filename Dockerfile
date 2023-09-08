@@ -11,5 +11,8 @@ WORKDIR /qmk_firmware
 # CMD make lily58/light:lily58l && \
 #     cp lily58_light_lily58l.hex keyboards/lily58/keymaps/lily58l
 
-CMD qmk compile -kb lily58/light --keymap lily58l -e CONVERT_TO=elite_pi \
-    && cp lily58_light_lily58l_elite_pi.uf2 keyboards/lily58/keymaps/lily58l
+CMD qmk compile -kb lily58/light --keymap lily58l --bootloader uf2-split-left -e CONVERT_TO=elite_pi && \
+    # cp lily58_light_lily58l_elite_pi.uf2 keyboards/lily58/keymaps/lily58l && \
+    qmk compile -kb lily58/light --keymap lily58l --bootloader uf2-split-right -e CONVERT_TO=elite_pi && \
+    # cp lily58_light_lily58l_elite_pi.uf2 keyboards/lily58/keymaps/lily58l
+    ls

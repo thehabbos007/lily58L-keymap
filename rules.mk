@@ -1,4 +1,6 @@
 EXTRAKEY_ENABLE = yes
 WPM_ENABLE = yes
 EXTRAFLAGS += -flto
-BOOTLOADER = atmel-dfu
+BOOTLOADER = rp2040
+CONVERT_TO = elite_pi
+OLED_ENABLE = no
